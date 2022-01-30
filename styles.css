@@ -1,0 +1,26 @@
+/* Setting background color: */
+body {
+    background-color: rgb(165, 161, 161);
+    font-family: 'Ubuntu', sans-serif;
+}
+/* Title Style */
+h1 {
+    text-align: center;
+    color: white;
+}
+/* App background div */
+#backDiv {
+    background-color: rgb(65, 65, 65);
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+}
+/* center div */
+.center {
+    margin: auto;
+  }
+/* Text content */
+p {
+    color: rgb(190, 189, 189);
+    text-align: center;
+}
