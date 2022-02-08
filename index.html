@@ -19,6 +19,7 @@
 	<!-- Page content -->
 
 	<div id="backDiv" class="center">
+		
 		<!-- Title -->
 		<h1>Maintenance</h1>
 		
@@ -26,20 +27,23 @@
 			<div class="menu">
 				<button class="Btn">Choose car</button>
 				<div class="menu-content">
-				  <a href="#"><Strong>Toyota </Strong> Camry 2.2 16v 1996-2001</a>
-				  <a href="#"><Strong>Peugeot </Strong> 607 2.2 16v 2005-2011</a>
+					<a href="#" onclick="emptyList()"><Strong>Empty</Strong></a>
+				  <a href="#" onclick="toyotaInfo()"><Strong>Toyota </Strong>Camry 2.2 16v 1996-2001</a>
+				  <a href="#" onclick="peugeotInfo()"><Strong>Peugeot </Strong>607 2.2 16v 2005-2011</a>
 				</div>
 			</div>
+
 			<!-- List items -->
 			<input type="text" id="inputText" placeholder="Add item to list">
 			<button onclick="addElement()" class="Btn">Add item</button>
-		
+
+			<!-- H2 Header for car Info -->
+			<h3 class="carInfo">Choose car or add items in list</h3>
+
 			<!-- List -->
 			<ul id="ulList">
   
 			</ul>		
 	</div>
-
-
 	</body>
 </html>
