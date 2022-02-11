@@ -55,7 +55,7 @@ input {
     position: relative;
     display: inline-block;
   }
-/* content of menu hided */
+/* content of menu hidded */
 .menu-content {
     display: none;
     position: absolute;
@@ -74,6 +74,7 @@ input {
     border-radius: 5px;
   }
 
+/* Change menu items background when mouse is over */
 .menu-content a:hover {
     background-color: #ddd;
 }
@@ -81,6 +82,7 @@ input {
 .menu:hover .menu-content {
     display: block;
 }
+/* Mouse hover for buttons */
 .menu:hover .btn {
     background-color: #5a7e5b;
 }
@@ -90,3 +92,19 @@ input {
     text-align: center;
     color: rgb(145, 144, 144);
 }
+/* Style of Items list */
+ul li {
+    width: 70%;
+    /* Change cursor */
+    cursor: pointer;
+    padding: 10px 2px 10px 40px;
+    background: #eee;
+    font-size: 16px;
+    transition: 0.2s;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    /* remove dots from List */
+    list-style-type: none;
+    /* center li element */
+    display: inline-block;
+  }
