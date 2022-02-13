@@ -1,52 +1,54 @@
 <!DOCTYPE html>
-<html lang ="eng">
-	<head>
-		<meta charset="UTF-8">
-		<title>DIY Maintenance</title>
+<html lang="eng">
 
-<!-- CSS file: -->
-        <link rel="stylesheet" href="styles.css">
+<head>
+	<meta charset="UTF-8">
+	<title>DIY Maintenance</title>
 
-<!-- JavaScript file: -->
-		<script src="myJavascript.js"></script>
-		
-<!-- Import font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
-	</head>
+	<!-- CSS file: -->
+	<link rel="stylesheet" href="styles.css">
 
-	<!-- Page content -->
+	<!-- JavaScript file: -->
+	<script src="myJavascript.js"></script>
 
-	<div id="backDiv" class="center">
-		
-		<!-- Title -->
-		<h1>Maintenance</h1>
-		
-		<!-- List Div-->
-		<div>
+	<!-- Import font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<!-- Page content -->
+
+<div id="backDiv" class="center">
+
+	<!-- Title -->
+	<h1>Maintenance</h1>
+
+	<!-- List Div-->
+	<div>
 		<!-- Menu -->
-			<div class="menu">
-				<button class="Btn">Choose car</button>
-				<div class="menu-content">
-					<a href="#" onclick="emptyList()"><Strong>Empty</Strong></a>
-				  <a href="#" onclick="toyotaInfo()"><Strong>Toyota </Strong>Camry 2.2 16v 1996-2001</a>
-				  <a href="#" onclick="peugeotInfo()"><Strong>Peugeot </Strong>607 2.2 16v 2005-2011</a>
-				</div>
+		<div class="menu">
+			<button class="Btn">Choose car</button>
+			<div class="menu-content">
+				<a href="#" onclick="emptyList()"><Strong>Empty</Strong></a>
+				<a href="#" onclick="toyotaInfo()"><Strong>Toyota </Strong>Camry 2.2 16v 1996-2001</a>
+				<a href="#" onclick="peugeotInfo()"><Strong>Peugeot </Strong>607 2.2 16v 2005-2011</a>
 			</div>
+		</div>
 
-			<!-- List items -->
-			<input type="text" id="inputText" placeholder="Add item to list">
-			<button onclick="addItem()" class="Btn">Add item</button>
+		<!-- List items -->
+		<input type="text" id="inputText" placeholder="Add item to list">
+		<button onclick="addItem()" class="Btn">Add item</button>
 
-			<!-- H2 Header for car Info -->
-			<h3 class="carInfo">Choose car or add items to list</h3>
+		<!-- H2 Header for car Info -->
+		<h3 class="carInfo">Choose car or add items to list</h3>
 
-			<!-- List -->
-			<ul id="ulList">
-		
-			</ul>
-		</div>	
+		<!-- List -->
+		<ul id="ulList">
+
+		</ul>
 	</div>
-	</body>
+</div>
+</body>
+
 </html>

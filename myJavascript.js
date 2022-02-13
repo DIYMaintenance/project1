@@ -1,14 +1,26 @@
-var myNodelist = document.getElementsByTagName("LI");
+// create close button to list element
 
-for (var i = 0; i < myNodelist.length; i++) {
-    var span = document.createElement("SPAN");
+var nodelist = document.getElementsByTagName("LI");
+
+for (var i = 0; i < nodelist.length; i++) {
+    var btn = document.createElement("BTN");
     var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    myNodelist[i].appendChild(span);
+    btn.className = "close";
+    btn.appendChild(txt);
+    nodelist[i].appendChild(btn);
+}
+// When close button is pressed hide list element
+
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+        var div = this.parentElement;
+        div.style.display = "none";
+    }
 }
 
-/* Functions to change model to h2 topic and add maintenance info to list */
+/* Functions to change model to h2 topic and add maintenance info to list as preset for example */
 
 function toyotaInfo() {
 
@@ -19,13 +31,13 @@ function toyotaInfo() {
     var ulList = document.getElementById('ulList');
     ulList.innerHTML = '';
 
-    // Add array element to UL
+    // Add array list
     const tInfo = [
         "Moottoriöljy API SG/SH SAE 10w-30 3.6L Öljyproppu 30Nm",
         "Öljysuodatin",
         "Tarkista nesteet Moottori",
         "Tarkista nesteet Jäähdytys",
-        "Tarkista vaihteistoölyn määrä ja vuodot",
+        "Tarkista vaihteistoöljyn määrä ja vuodot",
         "Tarkista jarrupalojen paksuus",
         "Tarkista jarrulevyjen kunto"
     ];
@@ -49,13 +61,13 @@ function peugeotInfo() {
     var ulList = document.getElementById('ulList');
     ulList.innerHTML = '';
 
-    // Add array element to UL
+    // Add array list
     const pInfo = [
         "Moottoriöljy ACEA A3/B3 SAE 10w-40 4.25L Öljyproppu 34Nm",
         "Öljysuodatin 15Nm",
         "Tarkista nesteet Moottori",
         "Tarkista nesteet Jäähdytys",
-        "Tarkista vaihteistoölyn määrä ja vuodot",
+        "Tarkista vaihteistoöjlyn määrä ja vuodot",
         "Tarkista jarrupalojen paksuus",
         "Tarkista jarrulevyjen kunto"
     ];
@@ -84,22 +96,22 @@ function emptyList() {
 function addItem() {
     var li = document.createElement("LI");
     var inputValue = document.getElementById("inputText").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
+    var text = document.createTextNode(inputValue);
+    li.appendChild(text);
 
     // if textfield is empty or less than 3 characters, change textfield background to red
-    if (inputValue === '' || inputValue.length <= 3) {
+    if (inputValue == '' || inputValue.length <= 3) {
         document.getElementById("inputText").style.backgroundColor = "red";
     } else {
         document.getElementById("ulList").appendChild(li);
     }
     document.getElementById("inputText").value = "";
 
-    var span = document.createElement("SPAN");
+    var btn = document.createElement("BTN");
     var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
+    btn.className = "close";
+    btn.appendChild(txt);
+    li.appendChild(btn);
 
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function () {
@@ -108,4 +120,3 @@ function addItem() {
         }
     }
 }
-
