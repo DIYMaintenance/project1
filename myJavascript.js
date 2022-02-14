@@ -1,3 +1,6 @@
+// Item calculator variable change in function
+let counter = 0;
+document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
 // create close button to list element
 
 var doList = document.getElementsByTagName("LI");
@@ -28,10 +31,30 @@ list.addEventListener('click', function (ev) {
     }
 }, false);
 
+//Counting items added to list
+function addCounter() {
+    counter += 1;
+    document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
+    console.log(counter);
+}
+// Counting items removed on list
+function removeCounter() {
+    counter -= 1;
+    document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
+    console.log(counter);
+}
+//Reseting counter
+
+function resetCounter() {
+    counter = 0;
+    document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
+    console.log(counter);
+}
 // Functions to change model to h2 topic and add maintenance info to list as preset for example
 
 function toyotaInfo() {
-
+    //reseting counter before adding items
+    resetCounter();
     // Change h2 topic to car model
     document.getElementsByTagName('h3')[0].innerHTML = "Toyota Camry 2.2 16v 1996-2001.<i> Every 15,000 km/ 12 months";
 
@@ -57,18 +80,20 @@ function toyotaInfo() {
         const textNode = document.createTextNode(txtSplit);
         node.appendChild(textNode);
         document.getElementById("ulList").appendChild(node);
-
+        addCounter();
     }
 }
 
 function peugeotInfo() {
-
+    //reseting counter before adding items
+    resetCounter();
     // Change h2 topic to car model
     document.getElementsByTagName('h3')[0].innerHTML = "Peugeot 607 2.2 16v 2005-2011.<i> Every 30,000/ 24 months";
 
     // Remove elements from list
     var ulList = document.getElementById('ulList');
     ulList.innerHTML = '';
+
 
     // Add array list
     const pInfo = [
@@ -88,6 +113,7 @@ function peugeotInfo() {
         const textNode = document.createTextNode(txtSplit);
         node.appendChild(textNode);
         document.getElementById("ulList").appendChild(node);
+        addCounter();
     }
 }
 
@@ -100,6 +126,7 @@ function emptyList() {
     // Remove elements from list
     var ulList = document.getElementById('ulList');
     ulList.innerHTML = '';
+    resetCounter();
 }
 
 // Add item to list
@@ -118,7 +145,8 @@ function addItem() {
         document.getElementById("ulList").appendChild(li);
         document.getElementById("inputText").placeholder = "Add item to list";
         document.getElementById("inputText").style.borderColor = "rgb(65, 65, 65)";
-        // document.getElementsByTagName('h3')[0].innerHTML = "Item added!";
+        document.getElementsByTagName('h3')[0].innerHTML = "Item added!";
+        addCounter();
     }
     // Empty textfield
     document.getElementById("inputText").value = "";
@@ -136,6 +164,7 @@ function addItem() {
             var div = this.parentElement;
             div.style.display = "none";
             document.getElementsByTagName('h3')[0].innerHTML = "Item removed!";
+            removeCounter();
         }
     }
 }
