@@ -40,7 +40,7 @@ function addCounter() {
 // Counting items removed on list
 function removeCounter() {
     counter -= 1;
-    document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
+    document.getElementById("laskuri").innerHTML = ("Items on list " + counter);
     console.log(counter);
 }
 //Reseting counter
@@ -50,11 +50,14 @@ function resetCounter() {
     document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
     console.log(counter);
 }
+
 // Functions to change model to h2 topic and add maintenance info to list as preset for example
 
 function toyotaInfo() {
+
     //reseting counter before adding items
     resetCounter();
+
     // Change h2 topic to car model
     document.getElementsByTagName('h3')[0].innerHTML = "Toyota Camry 2.2 16v 1996-2001.<i> Every 15,000 km/ 12 months";
 
@@ -107,7 +110,7 @@ function peugeotInfo() {
     ];
     // Get items from array
     for (var i = 0; i < pInfo.length; i++) {
-
+        
         let txtSplit = pInfo[i];
         const node = document.createElement("LI");
         const textNode = document.createTextNode(txtSplit);
