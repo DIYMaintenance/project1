@@ -1,13 +1,13 @@
 // create close button to list element
 
-var nodelist = document.getElementsByTagName("LI");
+var doList = document.getElementsByTagName("LI");
 
-for (var i = 0; i < nodelist.length; i++) {
+for (var i = 0; i < doList.length; i++) {
     var btn = document.createElement("BTN");
     var txt = document.createTextNode("\u00D7");
     btn.className = "close";
     btn.appendChild(txt);
-    nodelist[i].appendChild(btn);
+    doList[i].appendChild(btn);
 }
 // When close button is pressed hide list element
 
@@ -20,7 +20,15 @@ for (i = 0; i < close.length; i++) {
     }
 }
 
-/* Functions to change model to h2 topic and add maintenance info to list as preset for example */
+// Add a "overline" when click on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function (ev) {
+    if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('overline');
+    }
+}, false);
+
+// Functions to change model to h2 topic and add maintenance info to list as preset for example
 
 function toyotaInfo() {
 
@@ -33,7 +41,7 @@ function toyotaInfo() {
 
     // Add array list
     const tInfo = [
-        "Moottoriöljy API SG/SH SAE 10w-30 3.6L Öljyproppu 30Nm",
+        "Moottoriöljy API SG/SH SAE 10w-30 Tilavuus: 3.6L Öljyproppu 30Nm",
         "Öljysuodatin",
         "Tarkista nesteet Moottori",
         "Tarkista nesteet Jäähdytys",
@@ -49,6 +57,7 @@ function toyotaInfo() {
         const textNode = document.createTextNode(txtSplit);
         node.appendChild(textNode);
         document.getElementById("ulList").appendChild(node);
+
     }
 }
 
@@ -63,11 +72,11 @@ function peugeotInfo() {
 
     // Add array list
     const pInfo = [
-        "Moottoriöljy ACEA A3/B3 SAE 10w-40 4.25L Öljyproppu 34Nm",
+        "Moottoriöljy ACEA A3/B3 SAE 10w-40 Tilavuus: 4.25L Öljyproppu 34Nm",
         "Öljysuodatin 15Nm",
         "Tarkista nesteet Moottori",
         "Tarkista nesteet Jäähdytys",
-        "Tarkista vaihteistoöjlyn määrä ja vuodot",
+        "Tarkista vaihteistoöljyn määrä ja vuodot",
         "Tarkista jarrupalojen paksuus",
         "Tarkista jarrulevyjen kunto"
     ];
@@ -92,31 +101,41 @@ function emptyList() {
     var ulList = document.getElementById('ulList');
     ulList.innerHTML = '';
 }
+
 // Add item to list
 function addItem() {
-    var li = document.createElement("LI");
+    var li = document.createElement("li");
     var inputValue = document.getElementById("inputText").value;
     var text = document.createTextNode(inputValue);
     li.appendChild(text);
 
     // if textfield is empty or less than 3 characters, change textfield background to red
-    if (inputValue == '' || inputValue.length <= 3) {
-        document.getElementById("inputText").style.backgroundColor = "red";
+    if (inputValue === '' || inputValue.length <= 3) {
+        document.getElementById("inputText").style.borderColor = "red";
+        document.getElementById("inputText").placeholder = "Invalid input! Add more than 3 characters";
     } else {
+        // If more than 3 characters then add to list
         document.getElementById("ulList").appendChild(li);
+        document.getElementById("inputText").placeholder = "Add item to list";
+        document.getElementById("inputText").style.borderColor = "rgb(65, 65, 65)";
+        // document.getElementsByTagName('h3')[0].innerHTML = "Item added!";
     }
+    // Empty textfield
     document.getElementById("inputText").value = "";
 
+    // add close button to list item
     var btn = document.createElement("BTN");
     var txt = document.createTextNode("\u00D7");
     btn.className = "close";
     btn.appendChild(txt);
     li.appendChild(btn);
 
+    // Hide added item from list by clicking close button
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function () {
             var div = this.parentElement;
             div.style.display = "none";
+            document.getElementsByTagName('h3')[0].innerHTML = "Item removed!";
         }
     }
 }
