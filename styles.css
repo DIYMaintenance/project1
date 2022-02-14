@@ -144,7 +144,7 @@ ul li:hover {
 /* Overline and change background of list item when clicked */
 ul li.overline {
     background: #888;
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-decoration: line-through;
 }
 /* Style of laskuri */

@@ -1,6 +1,11 @@
+// Item completed variable in function
+let comp = 0;
+document.getElementById("completed").innerHTML = ("Completed: " + comp);
+
 // Item calculator variable change in function
 let counter = 0;
 document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
+
 // create close button to list element
 
 var doList = document.getElementsByTagName("LI");
@@ -30,6 +35,18 @@ list.addEventListener('click', function (ev) {
         ev.target.classList.toggle('overline');
     }
 }, false);
+
+function notCompleted(){
+    comp--;
+    document.getElementById("completed").innerHTML = ("Completed: " + comp);
+}
+
+//Counting completed tasks
+function completed(){
+    comp++;
+    document.getElementById("completed").innerHTML = ("Completed: " + comp);
+    
+}
 
 //Counting items added to list
 function addCounter() {
