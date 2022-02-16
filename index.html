@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>DIY Maintenance</title>
-
+	
 	<!-- CSS file: -->
 	<link rel="stylesheet" href="styles.css">
 
@@ -13,49 +13,50 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- Page content -->
+	<!-- Page content -->
 
-<div id="backDiv" class="center">
+	<div id="backDiv" class="center">
 
-	<!-- Title -->
-	<h1>Maintenance</h1>
+		<!-- Title -->
+		<h1>Maintenance</h1>
 
-	<!-- List Div-->
-	<div>
-		<!-- Menu for presets and empty list template -->
-		<div class="menu">
-			<button class="Btn">Choose car</button>
-			<div class="menu-content">
-				<a href="#" onclick="emptyList()"><Strong>Empty</Strong></a>
-				<a href="#" onclick="toyotaInfo()"><Strong>Toyota </Strong>Camry 2.2 16v 1996-2001</a>
-				<a href="#" onclick="peugeotInfo()"><Strong>Peugeot </Strong>607 2.2 16v 2005-2011</a>
+		<!-- List Div-->
+		<div>
+			<!-- Menu for presets and empty list template -->
+			<div class="menu">
+				<button class="Btn">Choose car</button>
+				<div class="menu-content">
+					<a href="#" onclick="emptyList()"><Strong>Empty</Strong></a>
+					<a href="#" onclick="toyotaInfo()"><Strong>Toyota </Strong>Camry 2.2 16v 1996-2001</a>
+					<a href="#" onclick="peugeotInfo()"><Strong>Peugeot </Strong>607 2.2 16v 2005-2011</a>
+				</div>
 			</div>
+
+			<!-- List items, textfield and add button -->
+			<input type="text" id="inputText" placeholder="Add item to list">
+			<button onclick="addItem()" class="Btn">Add item</button>
+
+			<!-- H2 Header for car Info -->
+			<h3 class="carInfo">Choose car or add items to list</h3>
+
+			<!-- List -->
+			<ul id="ulList">
+
+			</ul>
 		</div>
+		<p id="laskuri">
 
-		<!-- List items, textfield and add button -->
-		<input type="text" id="inputText" placeholder="Add item to list">
-		<button onclick="addItem()" class="Btn">Add item</button>
+		</p>
+		<p id="completed">
 
-		<!-- H2 Header for car Info -->
-		<h3 class="carInfo">Choose car or add items to list</h3>
-
-		<!-- List -->
-		<ul id="ulList">
-			
-		</ul>
+		</p>
 	</div>
-	<p id ="laskuri">
-		
-	</p>
-	<p id ="completed">
-		
-	</p>
 	</div>
-</div>
-<!-- JavaScript file: -->
-<script src="myJavascript.js"></script>
+	<!-- JavaScript file: -->
+	<script src="myJavascript.js"></script>
 </body>
 
 </html>

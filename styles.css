@@ -109,7 +109,7 @@ ul li {
     width: 70%;
     /* Change cursor */
     cursor: pointer;
-    padding: 6px 10px 6px 10px;
+    padding: 5px 10px 5px 10px;
     background: #eee;
     font-size: 16px;
     transition: 0.2s;
@@ -119,6 +119,7 @@ ul li {
     list-style-type: none;
     /* center li element */
     display: inline-block;
+
 }
 
 /* Change background of list when mouse hover */
@@ -147,8 +148,9 @@ ul li.overline {
     color: rgb(0, 0, 0);
     text-decoration: line-through;
 }
+
 /* Style of laskuri */
 #laskuri {
-text-align: left;
-padding-left: 17%;
+    text-align: left;
+    padding-left: 17%;
 }

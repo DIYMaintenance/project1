@@ -1,3 +1,9 @@
+
+//variables for localstorage
+var list = document.querySelector('#ulList');
+var title = document.querySelector('.carInfo');
+var saveCount = document.querySelector('#laskuri');
+
 // Item completed variable in function
 let comp = 0;
 document.getElementById("completed").innerHTML = ("Completed: " + comp);
@@ -6,17 +12,6 @@ document.getElementById("completed").innerHTML = ("Completed: " + comp);
 let counter = 0;
 document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
 
-// create close button to list element
-
-var doList = document.getElementsByTagName("LI");
-
-for (var i = 0; i < doList.length; i++) {
-    var btn = document.createElement("BTN");
-    var txt = document.createTextNode("\u00D7");
-    btn.className = "close";
-    btn.appendChild(txt);
-    doList[i].appendChild(btn);
-}
 // When close button is pressed hide list element
 
 var close = document.getElementsByClassName("close");
@@ -33,40 +28,49 @@ var list = document.querySelector('ul');
 list.addEventListener('click', function (ev) {
     if (ev.target.tagName === 'LI') {
         ev.target.classList.toggle('overline');
+        // call function to calculate completed tasks
     }
+    if (ev.target.classList.toggle('overline' === true)) {
+        completed();
+    } else {
+        notCompleted();
+    }
+    save();
 }, false);
 
-function notCompleted(){
+// Remove completed when click overline off
+function notCompleted() {
     comp--;
     document.getElementById("completed").innerHTML = ("Completed: " + comp);
 }
 
 //Counting completed tasks
-function completed(){
+function completed() {
     comp++;
     document.getElementById("completed").innerHTML = ("Completed: " + comp);
-    
 }
 
 //Counting items added to list
 function addCounter() {
-    counter += 1;
+    counter++;
     document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
-    console.log(counter);
 }
 // Counting items removed on list
 function removeCounter() {
-    counter -= 1;
+    counter--;
     document.getElementById("laskuri").innerHTML = ("Items on list " + counter);
-    console.log(counter);
 }
-//Reseting counter
+//Reset counter & reset Completed tasks
 
 function resetCounter() {
     counter = 0;
+    comp = 0;
     document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
-    console.log(counter);
+    document.getElementById("completed").innerHTML = ("Completed: " + comp);
 }
+
+
+
 
 // Functions to change model to h2 topic and add maintenance info to list as preset for example
 
@@ -94,13 +98,15 @@ function toyotaInfo() {
     ];
     // Get items from array
     for (var i = 0; i < tInfo.length; i++) {
-
+        addCounter();
         let txtSplit = tInfo[i];
         const node = document.createElement("LI");
         const textNode = document.createTextNode(txtSplit);
         node.appendChild(textNode);
         document.getElementById("ulList").appendChild(node);
-        addCounter();
+        // call function to add +1 to counter and save list to localstorage
+        save();
+
     }
 }
 
@@ -127,13 +133,15 @@ function peugeotInfo() {
     ];
     // Get items from array
     for (var i = 0; i < pInfo.length; i++) {
-        
+        addCounter();
         let txtSplit = pInfo[i];
         const node = document.createElement("LI");
         const textNode = document.createTextNode(txtSplit);
         node.appendChild(textNode);
         document.getElementById("ulList").appendChild(node);
-        addCounter();
+        // call function to add +1 to counter and save list to localstorage
+        save();
+
     }
 }
 
@@ -146,6 +154,8 @@ function emptyList() {
     // Remove elements from list
     var ulList = document.getElementById('ulList');
     ulList.innerHTML = '';
+    // clear localstorage and reset counter
+    localStorage.clear();
     resetCounter();
 }
 
@@ -166,7 +176,9 @@ function addItem() {
         document.getElementById("inputText").placeholder = "Add item to list";
         document.getElementById("inputText").style.borderColor = "rgb(65, 65, 65)";
         document.getElementsByTagName('h3')[0].innerHTML = "Item added!";
+        // call function to add +1 to counter and save list to localstorage
         addCounter();
+        save();
     }
     // Empty textfield
     document.getElementById("inputText").value = "";
@@ -177,14 +189,46 @@ function addItem() {
     btn.className = "close";
     btn.appendChild(txt);
     li.appendChild(btn);
-
+    save();
     // Hide added item from list by clicking close button
+//delete button
+
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function () {
             var div = this.parentElement;
-            div.style.display = "none";
-            document.getElementsByTagName('h3')[0].innerHTML = "Item removed!";
+
+            div.parentNode.removeChild(div);
+            // change h3 element when item removed
+            document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
+            //call function to -1 from counter
             removeCounter();
+            // call function to - value when close tasks
+            if (comp > 1) {
+                notCompleted();
+                notCompleted();
+            } else {
+                notCompleted();
+            }
         }
     }
 }
+// saving data
+function save() {
+    window.localStorage.ulList = list.innerHTML;
+    window.localStorage.carInfo = title.innerHTML;
+    window.localStorage.laskuri = saveCount.innerHTML;
+}
+//retrieve data from localstorage
+function ret() {
+    var data = window.localStorage.ulList;
+    var car = window.localStorage.carInfo;
+    var count = window.localStorage.laskuri;
+    if (!data) {
+        document.getElementsByTagName('h3')[0].innerHTML = "Choose car or add items to list";
+    } else {
+        list.innerHTML = data;
+        title.innerHTML = car;
+        saveCount.innerHTML = count;
+    }
+}
+ret();
