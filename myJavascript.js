@@ -145,8 +145,26 @@ function peugeotInfo() {
         const textNode = document.createTextNode(txtSplit);
         node.appendChild(textNode);
         document.getElementById("ulList").appendChild(node);
-        // call function to add +1 to counter and save list to localstorage
+
+        // add close button to list item
+        var btn = document.createElement("BTN");
+        var txt = document.createTextNode("\u00D7");
+        btn.className = "close";
+        btn.appendChild(txt);
+        node.appendChild(btn);
+        //save list to localstorage
+
         save();
+        var close = document.getElementsByClassName("close");
+        for (var b = 0; b < close.length; b++) {
+            close[b].onclick = function () {
+                var div = this.parentElement;
+                div.parentNode.removeChild(div);
+                // change h3 element when item removed
+                document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
+                removeCounter();
+            }
+        }
 
     }
 }
