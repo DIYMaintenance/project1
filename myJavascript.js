@@ -6,6 +6,7 @@ var saveCount = document.querySelector('#laskuri');
 
 // Item completed variable in function
 let comp = 0;
+
 document.getElementById("completed").innerHTML = ("Completed: " + comp);
 
 // Item calculator variable change in function
@@ -17,8 +18,8 @@ var list = document.querySelector('ul');
 list.addEventListener('click', function (ev) {
     if (ev.target.tagName === 'LI') {
         ev.target.classList.toggle('overline');
-        // call function to calculate completed tasks
     }
+    // call function to calculate completed tasks
     if (ev.target.classList.toggle('overline' === true)) {
         completed();
     } else {
@@ -230,15 +231,14 @@ function ret() {
     var car = window.localStorage.carInfo;
     var count = window.localStorage.laskuri;
     var counter3 = window.localStorage.counter2;
-  
+
     if (!data) {
         document.getElementsByTagName('h3')[0].innerHTML = "Choose car or add items to list";
     } else {
         list.innerHTML = data;
         title.innerHTML = car;
-        saveCount.innerHTML = counter3;
+        saveCount.innerHTML = count;
         counter = counter3;
-
     }
 }
 ret();
