@@ -1,8 +1,8 @@
-
 //variables for localstorage
 var list = document.querySelector('#ulList');
 var title = document.querySelector('.carInfo');
 var saveCount = document.querySelector('#laskuri');
+
 
 // Item completed variable in function
 let comp = 0;
@@ -11,17 +11,6 @@ document.getElementById("completed").innerHTML = ("Completed: " + comp);
 // Item calculator variable change in function
 let counter = 0;
 document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
-
-// When close button is pressed hide list element
-
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-        var div = this.parentElement;
-        div.style.display = "none";
-    }
-}
 
 // Add a "overline" when click on a list item
 var list = document.querySelector('ul');
@@ -58,7 +47,7 @@ function addCounter() {
 // Counting items removed on list
 function removeCounter() {
     counter--;
-    document.getElementById("laskuri").innerHTML = ("Items on list " + counter);
+    document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
 }
 //Reset counter & reset Completed tasks
 
@@ -69,9 +58,9 @@ function resetCounter() {
     document.getElementById("completed").innerHTML = ("Completed: " + comp);
 }
 
+function addDelButton() {
 
-
-
+}
 // Functions to change model to h2 topic and add maintenance info to list as preset for example
 
 function toyotaInfo() {
@@ -79,7 +68,7 @@ function toyotaInfo() {
     //reseting counter before adding items
     resetCounter();
 
-    // Change h2 topic to car model
+    // Change h3 topic to car model
     document.getElementsByTagName('h3')[0].innerHTML = "Toyota Camry 2.2 16v 1996-2001.<i> Every 15,000 km/ 12 months";
 
     // Remove elements from list
@@ -100,26 +89,42 @@ function toyotaInfo() {
     for (var i = 0; i < tInfo.length; i++) {
         addCounter();
         let txtSplit = tInfo[i];
-        const node = document.createElement("LI");
+        var node = document.createElement("LI");
         const textNode = document.createTextNode(txtSplit);
         node.appendChild(textNode);
         document.getElementById("ulList").appendChild(node);
-        // call function to add +1 to counter and save list to localstorage
-        save();
 
+        // add close button to list item
+        var btn = document.createElement("BTN");
+        var txt = document.createTextNode("\u00D7");
+        btn.className = "close";
+        btn.appendChild(txt);
+        node.appendChild(btn);
+        //save list to localstorage
+        save();
+        var close = document.getElementsByClassName("close");
+        for (var b = 0; b < close.length; b++) {
+            close[b].onclick = function () {
+                var div = this.parentElement;
+                div.parentNode.removeChild(div);
+                // change h3 element when item removed
+                document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
+                removeCounter();
+            }
+        }
     }
+
 }
 
 function peugeotInfo() {
     //reseting counter before adding items
     resetCounter();
-    // Change h2 topic to car model
+    // Change h3 topic to car model
     document.getElementsByTagName('h3')[0].innerHTML = "Peugeot 607 2.2 16v 2005-2011.<i> Every 30,000/ 24 months";
 
     // Remove elements from list
     var ulList = document.getElementById('ulList');
     ulList.innerHTML = '';
-
 
     // Add array list
     const pInfo = [
@@ -145,10 +150,10 @@ function peugeotInfo() {
     }
 }
 
-// Empty list if user wants add own content
+// Empty list if user wants add own or new content. Also reset localstorage
 function emptyList() {
 
-    // Change h2 topic back
+    // Change h3 topic back
     document.getElementsByTagName('h3')[0].innerHTML = "Choose car or add items to list";
 
     // Remove elements from list
@@ -190,18 +195,17 @@ function addItem() {
     btn.appendChild(txt);
     li.appendChild(btn);
     save();
-    // Hide added item from list by clicking close button
-//delete button
+
+
+    // Delete added item from list by clicking close button
 
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function () {
             var div = this.parentElement;
-
             div.parentNode.removeChild(div);
             // change h3 element when item removed
-            document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
-            //call function to -1 from counter
             removeCounter();
+            document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
             // call function to - value when close tasks
             if (comp > 1) {
                 notCompleted();
@@ -212,23 +216,42 @@ function addItem() {
         }
     }
 }
+
 // saving data
 function save() {
     window.localStorage.ulList = list.innerHTML;
     window.localStorage.carInfo = title.innerHTML;
     window.localStorage.laskuri = saveCount.innerHTML;
+    window.localStorage.counter2 = counter;
 }
 //retrieve data from localstorage
 function ret() {
     var data = window.localStorage.ulList;
     var car = window.localStorage.carInfo;
     var count = window.localStorage.laskuri;
+    var counter3 = window.localStorage.counter2;
+  
     if (!data) {
         document.getElementsByTagName('h3')[0].innerHTML = "Choose car or add items to list";
     } else {
         list.innerHTML = data;
         title.innerHTML = car;
-        saveCount.innerHTML = count;
+        saveCount.innerHTML = counter3;
+        counter = counter3;
+
     }
 }
 ret();
+
+// When close button is pressed hide list element
+
+var close = document.getElementsByClassName("close");
+for (var c = 0; c < close.length; c++) {
+    close[c].onclick = function () {
+        var div = this.parentElement;
+        div.parentNode.removeChild(div);
+        // change h3 element when item removed
+        document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
+        removeCounter();
+    }
+}
