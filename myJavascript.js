@@ -2,6 +2,7 @@
 var list = document.querySelector('#ulList');
 var title = document.querySelector('.carInfo');
 var saveCount = document.querySelector('#laskuri');
+var compCount = document.querySelector('#completed');
 
 
 // Item completed variable in function
@@ -12,6 +13,14 @@ document.getElementById("completed").innerHTML = ("Completed: " + comp);
 // Item calculator variable change in function
 let counter = 0;
 document.getElementById("laskuri").innerHTML = ("Items on list: " + counter);
+
+// add items to list by pushing "enter"
+var input = document.getElementById("inputText");
+input.addEventListener("keyup", function (ev) {
+    if (ev.keyCode === 13) {
+        addItem();
+    }
+});
 
 // Add a "overline" when click on a list item
 var list = document.querySelector('ul');
@@ -111,6 +120,7 @@ function toyotaInfo() {
                 // change h3 element when item removed
                 document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
                 removeCounter();
+                comp--;
             }
         }
     }
@@ -163,6 +173,7 @@ function peugeotInfo() {
                 // change h3 element when item removed
                 document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
                 removeCounter();
+                comp--;
             }
         }
 
@@ -225,13 +236,7 @@ function addItem() {
             // change h3 element when item removed
             removeCounter();
             document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
-            // call function to - value when close tasks
-            if (comp > 1) {
-                notCompleted();
-                notCompleted();
-            } else {
-                notCompleted();
-            }
+            comp--;
         }
     }
 }
@@ -242,6 +247,8 @@ function save() {
     window.localStorage.carInfo = title.innerHTML;
     window.localStorage.laskuri = saveCount.innerHTML;
     window.localStorage.counter2 = counter;
+    window.localStorage.valmis = compCount.innerHTML;
+    window.localStorage.complete2 = comp;
 }
 //retrieve data from localstorage
 function ret() {
@@ -249,6 +256,8 @@ function ret() {
     var car = window.localStorage.carInfo;
     var count = window.localStorage.laskuri;
     var counter3 = window.localStorage.counter2;
+    var complet = window.localStorage.valmis;
+    var complete3 = window.localStorage.complete2;
 
     if (!data) {
         document.getElementsByTagName('h3')[0].innerHTML = "Choose car or add items to list";
@@ -257,6 +266,9 @@ function ret() {
         title.innerHTML = car;
         saveCount.innerHTML = count;
         counter = counter3;
+        compCount.innerHTML = complet;
+        comp = complete3;
+
     }
 }
 ret();
@@ -270,6 +282,7 @@ for (var c = 0; c < close.length; c++) {
         div.parentNode.removeChild(div);
         // change h3 element when item removed
         document.getElementsByTagName('h3')[0].innerHTML = "<span style='color: red;'>Item removed!";
+        comp--;
         removeCounter();
     }
 }
